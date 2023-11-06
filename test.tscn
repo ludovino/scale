@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp1x0wmna4wof"]
+
+[ext_resource type="PackedScene" uid="uid://d0b07iirhu0bn" path="res://PhysicsModels/cabinet_television_doors.tscn" id="1_0fwag"]
+[ext_resource type="PackedScene" uid="uid://00yvdipsto66" path="res://player.tscn" id="2_a513d"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_y37cs"]
+size = Vector3(60, 1, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5b1c8"]
+size = Vector3(60, 1, 60)
+
+[node name="Test" type="Node"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_y37cs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("BoxShape3D_5b1c8")
+
+[node name="cabinetTelevisionDoors" parent="." instance=ExtResource("1_0fwag")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.295309, 0, -0.376627)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.278069, 0.702155, -0.655481, 0, 0.682394, 0.730985, 0.960561, -0.203264, 0.189753, 0, 10.0869, 0)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.675127, -0.539249, 0.503403, -0.360108, 0.836471, 0.413083, -0.643837, 0.0976035, -0.758912, 0, 10.0869, 0)
+light_energy = 0.5
+
+[node name="Player" parent="." instance=ExtResource("2_a513d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.884257, 0.547825, 1.43244)
+x_sensitivity = 0.1

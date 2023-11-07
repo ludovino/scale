@@ -1,0 +1,42 @@
+[gd_scene load_steps=10 format=3 uid="uid://sajfy0tdmc5r"]
+
+[ext_resource type="Script" path="res://suck_effect.gd" id="1_a2at6"]
+[ext_resource type="PackedScene" uid="uid://c21nqr6vpvdv2" path="res://Models/Furniture/bathroomSink.glb" id="2_72kiw"]
+[ext_resource type="PackedScene" uid="uid://dvmpyx2n5wj64" path="res://Models/Furniture/bathroomMirror.glb" id="3_ox640"]
+[ext_resource type="PackedScene" uid="uid://b3y1qdlwrt82t" path="res://Models/Furniture/bedDouble.glb" id="4_fbhbb"]
+[ext_resource type="PackedScene" uid="uid://cxt2bbpjsyi6w" path="res://Models/Furniture/bear.glb" id="4_mr5fg"]
+[ext_resource type="PackedScene" uid="uid://bsk4kmhxsfalf" path="res://Models/Furniture/bookcaseClosedWide.glb" id="6_u3n6j"]
+[ext_resource type="PackedScene" uid="uid://c0sjnpigkctw4" path="res://Models/Furniture/cardboardBoxOpen.glb" id="7_lub5n"]
+[ext_resource type="PackedScene" uid="uid://chwu46yr2duxs" path="res://Models/Furniture/ceilingFan.glb" id="8_asd8h"]
+[ext_resource type="PackedScene" uid="uid://dgu230ghpica0" path="res://Models/Furniture/coatRack.glb" id="9_qljts"]
+
+[node name="SuckEffect" type="Node3D"]
+script = ExtResource("1_a2at6")
+suck_time = 0.65
+
+[node name="bathroomSink" parent="." instance=ExtResource("2_72kiw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95885, 0, 0.831476)
+
+[node name="bear" parent="." instance=ExtResource("4_mr5fg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.522589, -1.19209e-07, 1.30973)
+
+[node name="bedDouble" parent="." instance=ExtResource("4_fbhbb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.542658, 0, -0.903694)
+
+[node name="bathroomMirror" parent="." instance=ExtResource("3_ox640")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16584, 0, -0.199966)
+
+[node name="bookcaseClosedWide" parent="." instance=ExtResource("6_u3n6j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03376, 0, -1.70264)
+
+[node name="cardboardBoxOpen" parent="." instance=ExtResource("7_lub5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.93068, 0, -0.920875)
+
+[node name="ceilingFan" parent="." instance=ExtResource("8_asd8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1768, 0, -0.0970526)
+
+[node name="coatRack" parent="." instance=ExtResource("9_qljts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.892557, 0, -0.192707)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.853769, 0.520652, 0, -0.520652, 0.853769, 0, 1.40652, 3.09515)

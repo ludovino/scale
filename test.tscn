@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp1x0wmna4wof"]
+[gd_scene load_steps=6 format=3 uid="uid://cp1x0wmna4wof"]
 
 [ext_resource type="PackedScene" uid="uid://d0b07iirhu0bn" path="res://PhysicsModels/cabinet_television_doors.tscn" id="1_0fwag"]
 [ext_resource type="PackedScene" uid="uid://00yvdipsto66" path="res://player.tscn" id="2_a513d"]
+[ext_resource type="Script" path="res://suck_effect.gd" id="3_imxoj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_y37cs"]
 size = Vector3(60, 1, 60)
@@ -35,3 +36,8 @@ light_energy = 0.5
 [node name="Player" parent="." instance=ExtResource("2_a513d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.884257, 0.547825, 1.43244)
 x_sensitivity = 0.1
+
+[node name="SuckEffect" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23538, 0)
+script = ExtResource("3_imxoj")
+suck_time = 1.765

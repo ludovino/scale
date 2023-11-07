@@ -27,10 +27,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.760778, 0)
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_20gsc")
-speed_size_curve = SubResource("Curve_4ocgc")
 x_sensitivity = 0.2
 y_sensitivity = 0.05
+knockback_during_grow = 6
 shrink_curve = ExtResource("2_rjsis")
+speed_size_curve = SubResource("Curve_4ocgc")
+shrink_rate = 0.8
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_1nnjg")

@@ -2,9 +2,9 @@ extends CharacterBody3D
 
 @export_group("movement")
 @export var speed = 1.5
-@export var fall_acceleration = 75.0
-@export var jump_impulse = 20.0
-@export var speed_size_curve: Curve
+@export var fall_acceleration = 15
+@export var jump_impulse = 5
+@export var collision_force = 30.0
 
 @export_group("camera")
 @export var x_invert = true
@@ -15,7 +15,9 @@ extends CharacterBody3D
 @export var low_angle = 60
 
 @export_group("growth")
+@export_flags_3d_physics var knockback_during_grow = 0
 @export var shrink_curve: Curve
+@export var speed_size_curve: Curve
 @export var shrink_rate = 0.3
 var target_velocity = Vector3.ZERO;
 
@@ -24,6 +26,9 @@ var size_factor = 1.0
 var collider_height = 0.0
 var collider_radius = 0.0
 var arm_distance = 0.0
+
+var growing = false
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	collider_height = $Collider.shape.height
@@ -31,22 +36,37 @@ func _ready():
 	arm_distance = $CameraArm.spring_length
 
 
+func _can_grow():
+	return not is_on_ceiling() or not is_on_floor()
+
+
 func _process_shrink(delta):
+	var space_state = get_world_3d().direct_space_state
 	if Input.is_action_pressed("shrink"):
 		size_key = clamp (size_key - shrink_rate * delta * 0.5, 0.0, 1.0)
-		print("shrink")
-	elif Input.is_action_pressed("grow"):
+		growing = false
+	elif Input.is_action_pressed("grow") and _can_grow():
+		var query = PhysicsRayQueryParameters3D.create(
+				global_position, 
+				global_position + Vector3.UP * 1.1 * size_factor, 
+				knockback_during_grow)
+		var result = space_state.intersect_ray(query)
+		if result:
+			result.collider.apply_impulse(Vector3.UP * collision_force, result.position)
 		size_key = clamp (size_key + shrink_rate * delta * 0.5, 0.0, 1.0)
-		print("grow")
+		growing = true
 	else:
+		growing = false
 		return
+		
 	size_factor = shrink_curve.sample(size_key)
 	$Collider.shape.height = collider_height * size_factor
 	$Collider.shape.radius = collider_radius * size_factor
 	$CameraArm.spring_length = arm_distance * size_factor
 	$Mesh.scale = Vector3.ONE * size_factor
 
-func _process_movement():
+
+func _process_movement(delta):
 	var input_velocity = Vector3.ZERO;
 	input_velocity.y = target_velocity.y
 	var cam_rotation = $CameraArm.get_global_transform().basis.get_euler().y
@@ -60,7 +80,25 @@ func _process_movement():
 		input_velocity.x += 1
 	target_velocity = input_velocity.rotated(Vector3.UP, cam_rotation)
 	if Input.is_action_just_pressed("jump") && is_on_floor():
-		target_velocity.y = jump_impulse
+		target_velocity.y = jump_impulse * speed_size_curve.sample(size_key)
+	
+	if not is_on_floor():
+		target_velocity.y = target_velocity.y - (fall_acceleration * delta * speed_size_curve.sample(size_key))
+	
+	velocity = target_velocity * speed * speed_size_curve.sample(size_key)
+
+
+func _process_collisions():
+	for index in range(get_slide_collision_count()):
+		var collision = get_slide_collision(index)
+		if collision.get_collider().is_in_group("prop"):
+			var prop = collision.get_collider()
+			if Vector3.UP.dot(collision.get_normal()) < 0:
+				print("collide", collision.get_collider().name)
+				if prop is PropBody and prop.min_force_size > size_factor:
+					continue
+				prop.apply_force(-collision.get_normal() * collision_force * 10, collision.get_position())
+
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -79,11 +117,8 @@ func _input(event):
 
 
 func _physics_process(delta):
-	_process_movement()
+	_process_movement(delta)
 	_process_shrink(delta)
 	
-	if not is_on_floor():
-		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
-	
-	velocity = target_velocity * speed * speed_size_curve.sample(size_key)
 	move_and_slide()
+	_process_collisions()

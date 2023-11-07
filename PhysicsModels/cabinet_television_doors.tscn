@@ -1,4 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0b07iirhu0bn"]
+[gd_scene load_steps=17 format=3 uid="uid://d0b07iirhu0bn"]
+
+[ext_resource type="Script" path="res://prop.gd" id="1_2ycfu"]
+[ext_resource type="Script" path="res://prop_body.gd" id="2_bnxx4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j67kg"]
 resource_name = "wood"
@@ -160,12 +163,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bi1xn")
 
-[node name="cabinetTelevisionDoors" type="Node3D"]
+[node name="cabinetTelevisionDoors" type="Node3D" groups=["prop"]]
+script = ExtResource("1_2ycfu")
+min_force_size = 0.8
 
 [node name="Cabinet" type="RigidBody3D" parent="."]
 collision_layer = 2
 mass = 20.0
 sleeping = true
+script = ExtResource("2_bnxx4")
 
 [node name="cabinetMesh" type="MeshInstance3D" parent="Cabinet"]
 mesh = SubResource("ArrayMesh_68ik1")

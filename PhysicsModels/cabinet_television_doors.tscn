@@ -168,53 +168,55 @@ script = ExtResource("1_2ycfu")
 min_force_size = 0.8
 
 [node name="Cabinet" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.405422, 0.176029, 0)
 collision_layer = 2
 mass = 20.0
 sleeping = true
 script = ExtResource("2_bnxx4")
 
 [node name="cabinetMesh" type="MeshInstance3D" parent="Cabinet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40659, -0.175105, 0)
 mesh = SubResource("ArrayMesh_68ik1")
 skeleton = NodePath("")
 
 [node name="legFL" type="CollisionShape3D" parent="Cabinet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205944, 0.151063, -0.0204724)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.385995, -0.0240424, -0.0204724)
 shape = SubResource("BoxShape3D_lce1b")
 
 [node name="legFR" type="CollisionShape3D" parent="Cabinet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.780398, 0.151063, -0.0204724)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.373808, -0.0240424, -0.0204724)
 shape = SubResource("BoxShape3D_lce1b")
 
 [node name="legBL" type="CollisionShape3D" parent="Cabinet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205944, 0.151063, -0.229658)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.385995, -0.0240424, -0.229658)
 shape = SubResource("BoxShape3D_lce1b")
 
 [node name="legBR" type="CollisionShape3D" parent="Cabinet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.780398, 0.151063, -0.229658)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.373808, -0.0240424, -0.229658)
 shape = SubResource("BoxShape3D_lce1b")
 
 [node name="shelfTop" type="CollisionShape3D" parent="Cabinet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.400759, 0.291144, -0.125649)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00583056, 0.116039, -0.125649)
 shape = SubResource("BoxShape3D_hmo0u")
 
 [node name="shelfMiddle" type="CollisionShape3D" parent="Cabinet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398651, 0.175567, -0.124439)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00793853, 0.000461578, -0.124439)
 shape = SubResource("BoxShape3D_1as3m")
 
 [node name="shelfBottom" type="CollisionShape3D" parent="Cabinet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.400759, 0.0631157, -0.125649)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00583056, -0.11199, -0.125649)
 shape = SubResource("BoxShape3D_hmo0u")
 
 [node name="sideL" type="CollisionShape3D" parent="Cabinet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.019859, 0.166348, -0.125179)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.386731, -0.00875741, -0.125179)
 shape = SubResource("BoxShape3D_qfs88")
 
 [node name="sideR" type="CollisionShape3D" parent="Cabinet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.781355, 0.166348, -0.125179)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.374765, -0.00875741, -0.125179)
 shape = SubResource("BoxShape3D_qfs88")
 
 [node name="pillarMiddle" type="CollisionShape3D" parent="Cabinet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.399965, 0.18565, -0.0403455)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00662461, 0.0105446, -0.0403455)
 shape = SubResource("BoxShape3D_e1r7c")
 
 [node name="HingeL" type="HingeJoint3D" parent="."]

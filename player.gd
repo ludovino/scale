@@ -48,7 +48,7 @@ func _process_shrink(delta):
 	elif Input.is_action_pressed("grow") and _can_grow():
 		var query = PhysicsRayQueryParameters3D.create(
 				global_position, 
-				global_position + Vector3.UP * 1.1 * size_factor, 
+				$Mesh/HeadRaycastTarget.global_position, 
 				knockback_during_grow)
 		var result = space_state.intersect_ray(query)
 		if result:

@@ -26,14 +26,15 @@ var size_factor = 1.0
 var collider_height = 0.0
 var collider_radius = 0.0
 var arm_distance = 0.0
-
+var vacuum_offset = Vector3.ZERO
 var growing = false
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	collider_height = $Collider.shape.height
 	collider_radius = $Collider.shape.radius
-	arm_distance = $CameraArm.spring_length
+	arm_distance = $CameraPivot/CameraArm.spring_length
+	vacuum_offset = $CameraPivot/Vacuum.position
 
 
 func _can_grow():
@@ -62,14 +63,16 @@ func _process_shrink(delta):
 	size_factor = shrink_curve.sample(size_key)
 	$Collider.shape.height = collider_height * size_factor
 	$Collider.shape.radius = collider_radius * size_factor
-	$CameraArm.spring_length = arm_distance * size_factor
+	$CameraPivot/CameraArm.spring_length = arm_distance * size_factor
 	$Mesh.scale = Vector3.ONE * size_factor
+	$CameraPivot/Vacuum.set_size(size_factor)
+	$CameraPivot/Vacuum.position = vacuum_offset * size_factor
 
 
 func _process_movement(delta):
 	var input_velocity = Vector3.ZERO;
 	input_velocity.y = target_velocity.y
-	var cam_rotation = $CameraArm.get_global_transform().basis.get_euler().y
+	var cam_rotation = $CameraPivot/CameraArm.get_global_transform().basis.get_euler().y
 	if Input.is_action_pressed("move_forward"):
 		input_velocity.z -= 1
 	if Input.is_action_pressed("move_back"):
@@ -94,7 +97,7 @@ func _process_collisions():
 		if collision.get_collider().is_in_group("prop"):
 			var prop = collision.get_collider()
 			if Vector3.UP.dot(collision.get_normal()) < 0:
-				print("collide", collision.get_collider().name)
+				#print("collide", collision.get_collider().name)
 				if prop is PropBody and prop.min_force_size > size_factor:
 					continue
 				prop.apply_force(-collision.get_normal() * collision_force * 10, collision.get_position())
@@ -110,8 +113,8 @@ func _input(event):
 		if y_invert:
 			y_change *= -1
 			
-		$CameraArm.rotation.y += x_change
-		$CameraArm.rotation.x = clamp($CameraArm.rotation.x + y_change, 
+		$CameraPivot.rotation.y += x_change
+		$CameraPivot.rotation.x = clamp($CameraPivot.rotation.x + y_change, 
 				-deg_to_rad(low_angle), 
 				deg_to_rad(high_angle))
 

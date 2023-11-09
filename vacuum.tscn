@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://43v6u8hcob3i"]
+
+[ext_resource type="Script" path="res://vacuum.gd" id="1_ivvxq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5343f"]
+radius = 0.584606
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w8nyh"]
+radius = 0.3
+
+[sub_resource type="SphereMesh" id="SphereMesh_0xp7e"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_nnsfp"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Vacuum" type="Node3D"]
+script = ExtResource("1_ivvxq")
+
+[node name="PullArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+collision_layer = 32
+collision_mask = 38
+
+[node name="PullCollider" type="CollisionShape3D" parent="PullArea"]
+transform = Transform3D(1, 0, 0, 0, -0.0115538, -0.999933, 0, 0.999933, -0.0115538, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_5343f")
+disabled = true
+
+[node name="ConsumeArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.35143)
+collision_layer = 64
+collision_mask = 70
+
+[node name="ConsumeCollider" type="CollisionShape3D" parent="ConsumeArea"]
+shape = SubResource("SphereShape3D_w8nyh")
+disabled = true
+
+[node name="Scaleable" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_0xp7e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scaleable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.134809)
+mesh = SubResource("BoxMesh_nnsfp")
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="Scaleable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.10186)
+strength = -1.0
+directionality = 1.0
+
+[node name="GPUParticlesAttractorSphere3D2" type="GPUParticlesAttractorSphere3D" parent="Scaleable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.686744)
+strength = -2.0
+directionality = 1.0
+radius = 0.544328
+
+[node name="GPUParticlesAttractorSphere3D3" type="GPUParticlesAttractorSphere3D" parent="Scaleable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.251527)
+strength = -4.0
+directionality = 1.0
+radius = 0.25
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Scaleable"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[connection signal="area_entered" from="PullArea" to="." method="_on_pull_area_area_entered"]
+[connection signal="body_entered" from="PullArea" to="." method="_on_pull_area_body_entered"]
+[connection signal="body_exited" from="PullArea" to="." method="_on_pull_area_body_exited"]
+[connection signal="body_entered" from="ConsumeArea" to="." method="_on_consume_area_body_entered"]

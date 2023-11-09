@@ -79,6 +79,9 @@ jump={
 3d_physics/layer_2="Furniture"
 3d_physics/layer_3="Doors"
 3d_physics/layer_4="Player"
+3d_physics/layer_5="Kick"
+3d_physics/layer_6="Suction"
+3d_physics/layer_7="Swallow"
 
 [rendering]
 

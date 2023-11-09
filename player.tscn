@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://00yvdipsto66"]
+[gd_scene load_steps=8 format=3 uid="uid://00yvdipsto66"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_20gsc"]
 [ext_resource type="Curve" uid="uid://bsqbwnph7wxw8" path="res://ShrinkCurve.tres" id="2_rjsis"]
+[ext_resource type="PackedScene" uid="uid://43v6u8hcob3i" path="res://vacuum.tscn" id="3_ubopx"]
 
 [sub_resource type="Curve" id="Curve_4ocgc"]
 min_value = 0.3
@@ -41,14 +42,19 @@ shape = SubResource("CapsuleShape3D_1nnjg")
 mesh = SubResource("CapsuleMesh_nuvxq")
 
 [node name="HeadRaycastTarget" type="Marker3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.546736, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.608958, 0)
 
-[node name="CameraArm" type="SpringArm3D" parent="."]
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="CameraArm" type="SpringArm3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.996041, 0.0888943, 0, -0.0888943, 0.996041, 0, 0, 0)
 collision_mask = 7
 shape = SubResource("SeparationRayShape3D_el5vr")
 spring_length = 3.0
 
-[node name="Camera" type="Camera3D" parent="CameraArm"]
+[node name="Camera" type="Camera3D" parent="CameraPivot/CameraArm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 near = 0.001
+
+[node name="Vacuum" parent="CameraPivot" instance=ExtResource("3_ubopx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.404581, -0.0659293, -0.225988)

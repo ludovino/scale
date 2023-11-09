@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://43v6u8hcob3i"]
 
-[ext_resource type="Script" path="res://vacuum.gd" id="1_ivvxq"]
+[ext_resource type="Script" path="res://Scripts/vacuum.gd" id="1_ivvxq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5343f"]
 radius = 0.584606

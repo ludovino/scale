@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cp1x0wmna4wof"]
 
 [ext_resource type="PackedScene" uid="uid://d0b07iirhu0bn" path="res://PhysicsModels/cabinet_television_doors.tscn" id="1_0fwag"]
-[ext_resource type="PackedScene" uid="uid://00yvdipsto66" path="res://player.tscn" id="2_a513d"]
-[ext_resource type="Script" path="res://suck_effect.gd" id="3_imxoj"]
+[ext_resource type="PackedScene" uid="uid://00yvdipsto66" path="res://PlayerScenes/player.tscn" id="2_a513d"]
+[ext_resource type="Script" path="res://Scripts/suck_effect.gd" id="3_meg5r"]
 [ext_resource type="PackedScene" uid="uid://bm564aaobgxyq" path="res://dirt.tscn" id="4_n8fd4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_y37cs"]
@@ -23,7 +23,7 @@ mesh = SubResource("BoxMesh_y37cs")
 shape = SubResource("BoxShape3D_5b1c8")
 
 [node name="cabinetTelevisionDoors" parent="." instance=ExtResource("1_0fwag")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.38506, 1.42223, -0.377)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.74803, 1.32331, -0.657868)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.278069, 0.702155, -0.655481, 0, 0.682394, 0.730985, 0.960561, -0.203264, 0.189753, 0, 10.0869, 0)
@@ -41,7 +41,7 @@ x_sensitivity = 0.1
 
 [node name="SuckEffect" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23538, 0)
-script = ExtResource("3_imxoj")
+script = ExtResource("3_meg5r")
 suck_time = 1.765
 
 [node name="Dirt" parent="." instance=ExtResource("4_n8fd4")]

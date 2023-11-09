@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://d0b07iirhu0bn"]
 
-[ext_resource type="Script" path="res://prop.gd" id="1_2ycfu"]
-[ext_resource type="Script" path="res://prop_body.gd" id="2_bnxx4"]
+[ext_resource type="Script" path="res://Scripts/prop.gd" id="1_2ycfu"]
+[ext_resource type="Script" path="res://Scripts/prop_body.gd" id="2_bnxx4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j67kg"]
 resource_name = "wood"

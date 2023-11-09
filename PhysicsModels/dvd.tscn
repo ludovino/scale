@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqjw3qni6xkxu"]
+
+[ext_resource type="Script" path="res://Scripts/prop.gd" id="1_wrt8g"]
+[ext_resource type="Script" path="res://Scripts/prop_body.gd" id="2_oikwb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o437i"]
+albedo_color = Color(0.529412, 0.541176, 0.568627, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_04x2w"]
+material = SubResource("StandardMaterial3D_o437i")
+size = Vector3(0.08, 0.005, 0.13)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t787s"]
+size = Vector3(0.08, 0.005, 0.13)
+
+[node name="Dvd" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0506351, 0)
+script = ExtResource("1_wrt8g")
+
+[node name="DvdBody" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 119
+mass = 0.1
+script = ExtResource("2_oikwb")
+min_suck_size = 0.3
+min_force_size = 0.1
+score = -1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DvdBody"]
+mesh = SubResource("BoxMesh_04x2w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DvdBody"]
+shape = SubResource("BoxShape3D_t787s")

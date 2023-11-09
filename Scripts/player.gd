@@ -4,7 +4,7 @@ extends CharacterBody3D
 @export var speed = 1.5
 @export var fall_acceleration = 15
 @export var jump_impulse = 5
-@export var collision_force = 30.0
+@export var collision_force = 150
 
 @export_group("camera")
 @export var x_invert = true
@@ -96,11 +96,12 @@ func _process_collisions():
 		var collision = get_slide_collision(index)
 		if collision.get_collider().is_in_group("prop"):
 			var prop = collision.get_collider()
-			if Vector3.UP.dot(collision.get_normal()) < 0:
-				#print("collide", collision.get_collider().name)
+			if Vector3.UP.dot(collision.get_normal()) < 0.2:
+				print(prop.name)
+				var force = collision_force
 				if prop is PropBody and prop.min_force_size > size_factor:
-					continue
-				prop.apply_force(-collision.get_normal() * collision_force * 10, collision.get_position())
+					force = force * size_factor / prop.min_force_size
+				prop.apply_force(-collision.get_normal() * force, collision.get_position())
 
 
 func _input(event):

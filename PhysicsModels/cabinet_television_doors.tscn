@@ -172,11 +172,11 @@ script = ExtResource("1_2ycfu")
 [node name="Cabinet" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.405422, 0.176029, 0)
 collision_layer = 2
-collision_mask = 97
+collision_mask = 99
 mass = 20.0
 sleeping = true
 script = ExtResource("2_bnxx4")
-min_suck_size = 0.5
+min_force_size = 0.8
 
 [node name="cabinetMesh" type="MeshInstance3D" parent="Cabinet"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40659, -0.175105, 0)

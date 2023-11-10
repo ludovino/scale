@@ -43,6 +43,7 @@ script = SubResource("GDScript_0idnm")
 [node name="Player" parent="." instance=ExtResource("2_a513d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48283, 0.547825, 1.15042)
 x_sensitivity = 0.1
+y_invert = true
 
 [node name="StudioListener3D" type="StudioListener3D" parent="Player" node_paths=PackedStringArray("attenuation_object")]
 attenuation_object = NodePath("..")

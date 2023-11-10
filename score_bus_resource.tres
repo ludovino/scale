@@ -1,6 +1,0 @@
-[gd_resource type="Resource" script_class="ScoreBus" load_steps=2 format=3 uid="uid://cfoh5fe65j5md"]
-
-[ext_resource type="Script" path="res://score_bus.gd" id="1_31yin"]
-
-[resource]
-script = ExtResource("1_31yin")

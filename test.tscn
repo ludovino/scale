@@ -37,6 +37,9 @@ func _process(delta):
 [sub_resource type="BoxShape3D" id="BoxShape3D_5b1c8"]
 size = Vector3(60, 1, 60)
 
+[sub_resource type="LabelSettings" id="LabelSettings_00e8h"]
+font_size = 48
+
 [node name="Test" type="Node"]
 script = SubResource("GDScript_0idnm")
 
@@ -56,14 +59,7 @@ suck_time = 1.765
 [node name="Environment" type="Node" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(0.278069, 0.702155, -0.655481, 0, 0.682394, 0.730984, 0.960561, -0.203264, 0.189753, 0, 10.0869, 0)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(-0.675127, -0.539248, 0.503403, -0.360108, 0.836471, 0.413083, -0.643837, 0.0976041, -0.758912, 0, 10.0869, 0)
-light_energy = 0.5
-shadow_enabled = true
+transform = Transform3D(0.264327, 0.879323, -0.396134, -0.0863341, 0.430667, 0.898372, 0.960561, -0.203264, 0.189753, 0, 10.0869, 0)
 
 [node name="Static" type="Node" parent="."]
 
@@ -151,6 +147,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.475078, 0, 0.621299)
 
 [node name="Dirt10" parent="UnderCoffeeTable" instance=ExtResource("4_n8fd4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37582, 0, 0.706266)
+
+[node name="Dirt13" parent="UnderCoffeeTable" instance=ExtResource("4_n8fd4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.619537, 0.238775, 0.621299)
+
+[node name="Dirt14" parent="UnderCoffeeTable" instance=ExtResource("4_n8fd4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.244579, 0.245395, 0.493516)
+
+[node name="Dirt15" parent="UnderCoffeeTable" instance=ExtResource("4_n8fd4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44154, 0.245395, 0.487714)
+
+[node name="Dirt16" parent="UnderCoffeeTable" instance=ExtResource("4_n8fd4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37582, 0.245396, 0.706266)
 
 [node name="Dirt11" parent="UnderCoffeeTable" instance=ExtResource("4_n8fd4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.411438, 0, 0.521769)

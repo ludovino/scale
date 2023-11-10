@@ -50,10 +50,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.608958, 0)
 transform = Transform3D(1, 0, 0, 0, 0.996041, 0.0888943, 0, -0.0888943, 0.996041, 0, 0, 0)
 collision_mask = 7
 shape = SubResource("SeparationRayShape3D_el5vr")
-spring_length = 3.0
 
-[node name="Camera" type="Camera3D" parent="CameraPivot/CameraArm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+[node name="CameraOffset" type="Node3D" parent="CameraPivot/CameraArm"]
+transform = Transform3D(1, 0, 0, 0, 1, 4.47035e-08, 0, -4.47035e-08, 1, 0, 0, 1.5)
+
+[node name="Camera" type="Camera3D" parent="CameraPivot/CameraArm/CameraOffset"]
+transform = Transform3D(1, 0, 0, 0, 0.973579, 0.228351, 0, -0.228351, 0.973579, 0.382, 0.3, 0)
 near = 0.001
 
 [node name="Vacuum" parent="CameraPivot" instance=ExtResource("3_ubopx")]

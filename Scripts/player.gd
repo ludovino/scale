@@ -27,6 +27,7 @@ var collider_height = 0.0
 var collider_radius = 0.0
 var arm_distance = 0.0
 var vacuum_offset = Vector3.ZERO
+var camera_offset = Vector3.ZERO
 var growing = false
 
 func _ready():
@@ -35,8 +36,7 @@ func _ready():
 	collider_radius = $Collider.shape.radius
 	arm_distance = $CameraPivot/CameraArm.spring_length
 	vacuum_offset = $CameraPivot/Vacuum.position
-	
-
+	camera_offset = $CameraPivot/CameraArm/CameraOffset/Camera.position
 
 func _can_grow():
 	return not is_on_ceiling() or not is_on_floor()
@@ -68,6 +68,7 @@ func _process_shrink(delta):
 	$Mesh.scale = Vector3.ONE * size_factor
 	$CameraPivot/Vacuum.set_size(size_factor)
 	$CameraPivot/Vacuum.position = vacuum_offset * size_factor
+	$CameraPivot/CameraArm/CameraOffset/Camera.position = camera_offset * size_factor
 
 
 func _process_movement(delta):

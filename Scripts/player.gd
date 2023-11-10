@@ -68,6 +68,7 @@ func _process_shrink(delta):
 	$Mesh.scale = Vector3.ONE * size_factor
 	$CameraPivot/Vacuum.set_size(size_factor)
 	$CameraPivot/Vacuum.position = vacuum_offset * size_factor
+	FMODStudioModule.get_studio_system().set_parameter_by_name("PlayerSize", size_key, false)
 
 
 func _process_movement(delta):

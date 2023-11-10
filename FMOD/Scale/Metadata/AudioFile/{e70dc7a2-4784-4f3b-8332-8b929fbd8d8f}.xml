@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{e70dc7a2-4784-4f3b-8332-8b929fbd8d8f}">
+		<property name="assetPath">
+			<value>player jump 1-Audio [2023-11-10 181702] (Freeze) (Freeze).wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.59999999999999998</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8687bab5-575c-4a91-a9ab-ffd18dfdf8b9}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://begmxn80c1au3"
+path="res://.godot/imported/player jump 7-Audio-1 (Freeze) (Freeze) [2023-11-10 192900].wav-a4dcb11018ead74ee61f488a97cc0472.sample"
+
+[deps]
+
+source_file="res://FMOD/SFX and Music/Player Jump/player jump 7-Audio-1 (Freeze) (Freeze) [2023-11-10 192900].wav"
+dest_files=["res://.godot/imported/player jump 7-Audio-1 (Freeze) (Freeze) [2023-11-10 192900].wav-a4dcb11018ead74ee61f488a97cc0472.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

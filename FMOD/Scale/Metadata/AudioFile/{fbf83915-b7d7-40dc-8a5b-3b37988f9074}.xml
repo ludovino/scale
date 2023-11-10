@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{655346c3-e4d9-4318-bc57-cfb1f9503d95}">
+	<object class="AudioFile" id="{fbf83915-b7d7-40dc-8a5b-3b37988f9074}">
 		<property name="assetPath">
-			<value>jumpvoxB1.mp3</value>
+			<value>player jump 12-Audio (Freeze) (Freeze) [2023-11-10 192910].wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>0.52800000000000002</value>
+			<value>0.59999999999999998</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{8687bab5-575c-4a91-a9ab-ffd18dfdf8b9}</destination>

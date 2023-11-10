@@ -226,3 +226,6 @@ transform = Transform3D(0.320001, 0, -0.947417, 0, 1, 0, 0.947417, 0, 0.320001, 
 
 [node name="Dvd6" parent="PhysicsObjects" instance=ExtResource("17_a2so6")]
 transform = Transform3D(0.395946, 0, -0.918274, 0, 1, 0, 0.918274, 0, 0.395946, -0.0510578, 0.10357, -0.205305)
+
+[node name="StudioListener3D" type="StudioListener3D" parent="." node_paths=PackedStringArray("attenuation_object")]
+attenuation_object = NodePath("../Player")

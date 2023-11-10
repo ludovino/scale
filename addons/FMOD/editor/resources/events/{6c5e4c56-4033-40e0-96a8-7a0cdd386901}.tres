@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://c6n8lg0bbc7ne"]
+
+[resource]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/PlayerJump"
+guid = "{6c5e4c56-4033-40e0-96a8-7a0cdd386901}"
+name = "PlayerJump"

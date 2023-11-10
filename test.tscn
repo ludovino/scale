@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cp1x0wmna4wof"]
+[gd_scene load_steps=22 format=3 uid="uid://cp1x0wmna4wof"]
 
 [ext_resource type="PackedScene" uid="uid://d0b07iirhu0bn" path="res://PhysicsModels/cabinet_television_doors.tscn" id="1_0fwag"]
 [ext_resource type="PackedScene" uid="uid://00yvdipsto66" path="res://PlayerScenes/player.tscn" id="2_a513d"]
@@ -17,15 +17,36 @@
 [ext_resource type="PackedScene" uid="uid://c557tpwahvxvr" path="res://PhysicsModels/table_coffee_glass.tscn" id="15_867rm"]
 [ext_resource type="PackedScene" uid="uid://b1v7l7tmv7vc8" path="res://PhysicsModels/cup.tscn" id="16_f2pla"]
 [ext_resource type="PackedScene" uid="uid://bqjw3qni6xkxu" path="res://PhysicsModels/dvd.tscn" id="17_a2so6"]
+[ext_resource type="BankAsset" uid="uid://d33ws4htq15du" path="res://addons/FMOD/editor/resources/banks/{8556b406-a0d5-4596-b6ff-645698634984}.tres" id="18_yl4eo"]
+[ext_resource type="BankAsset" uid="uid://46a4lthp3qkk" path="res://addons/FMOD/editor/resources/banks/{1d4b94d2-d1ae-09d4-30b6-eea869904f1c}.tres" id="19_0cb5v"]
+
+[sub_resource type="GDScript" id="GDScript_0idnm"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5b1c8"]
 size = Vector3(60, 1, 60)
 
 [node name="Test" type="Node"]
+script = SubResource("GDScript_0idnm")
 
 [node name="Player" parent="." instance=ExtResource("2_a513d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48283, 0.547825, 1.15042)
 x_sensitivity = 0.1
+
+[node name="StudioListener3D" type="StudioListener3D" parent="Player" node_paths=PackedStringArray("attenuation_object")]
+attenuation_object = NodePath("..")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48283, -0.547825, -1.15042)
 
 [node name="SuckEffect" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23538, 0)
@@ -227,5 +248,8 @@ transform = Transform3D(0.320001, 0, -0.947417, 0, 1, 0, 0.947417, 0, 0.320001, 
 [node name="Dvd6" parent="PhysicsObjects" instance=ExtResource("17_a2so6")]
 transform = Transform3D(0.395946, 0, -0.918274, 0, 1, 0, 0.918274, 0, 0.395946, -0.0510578, 0.10357, -0.205305)
 
-[node name="StudioListener3D" type="StudioListener3D" parent="." node_paths=PackedStringArray("attenuation_object")]
-attenuation_object = NodePath("../Player")
+[node name="StudioBankLoader" type="StudioBankLoader" parent="."]
+load_on = 1
+num_banks = 2
+bank_0 = ExtResource("18_yl4eo")
+bank_1 = ExtResource("19_0cb5v")

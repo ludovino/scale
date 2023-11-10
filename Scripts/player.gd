@@ -21,9 +21,6 @@ extends CharacterBody3D
 @export var shrink_rate = 0.3
 var target_velocity = Vector3.ZERO;
 
-@export var jumpevent: EventAsset
-var jumpinstance: EventInstance
-
 var size_key = 0.5
 var size_factor = 1.0
 var collider_height = 0.0
@@ -38,7 +35,6 @@ func _ready():
 	collider_radius = $Collider.shape.radius
 	arm_distance = $CameraPivot/CameraArm.spring_length
 	vacuum_offset = $CameraPivot/Vacuum.position
-	jumpinstance = FMODRuntime.create_instance(jumpevent)
 	
 
 
@@ -89,8 +85,7 @@ func _process_movement(delta):
 	target_velocity = input_velocity.rotated(Vector3.UP, cam_rotation)
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		target_velocity.y = jump_impulse * speed_size_curve.sample(size_key)
-		jumpinstance.start()
-		jumpinstance.release()
+		FMODRuntime.play_one_shot_path("event:/PlayerJump")
 	
 	if not is_on_floor():
 		target_velocity.y = target_velocity.y - (fall_acceleration * delta * speed_size_curve.sample(size_key))

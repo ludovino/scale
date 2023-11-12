@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{119cf442-f5a4-432b-bd58-6c68c5e7dbb2}">
+		<property name="assetPath">
+			<value>deflating.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>19.199999999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8687bab5-575c-4a91-a9ab-ffd18dfdf8b9}</destination>
+		</relationship>
+	</object>
+</objects>

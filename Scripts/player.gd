@@ -21,6 +21,10 @@ extends CharacterBody3D
 @export var shrink_rate = 0.3
 var target_velocity = Vector3.ZERO;
 
+#FMOD Biz
+var grow_shrink_instance: EventInstance
+var can_play_size_change = true
+
 var size_key = 0.5
 var size_factor = 1.0
 var collider_height = 0.0
@@ -28,6 +32,7 @@ var collider_radius = 0.0
 var arm_distance = 0.0
 var vacuum_offset = Vector3.ZERO
 var growing = false
+var last_frame_size = 0.0
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -35,7 +40,8 @@ func _ready():
 	collider_radius = $Collider.shape.radius
 	arm_distance = $CameraPivot/CameraArm.spring_length
 	vacuum_offset = $CameraPivot/Vacuum.position
-	
+	#FMOD Biz
+	grow_shrink_instance = FMODRuntime.create_instance_path("event:/PlayerChangeSize")
 
 
 func _can_grow():
@@ -47,6 +53,8 @@ func _process_shrink(delta):
 	if Input.is_action_pressed("shrink"):
 		size_key = clamp (size_key - shrink_rate * delta * 0.5, 0.0, 1.0)
 		growing = false
+		grow_shrink_instance.set_parameter_by_name_with_label("GrowShrink", "Shrinking", false)
+		
 	elif Input.is_action_pressed("grow") and _can_grow():
 		var query = PhysicsRayQueryParameters3D.create(
 				global_position, 
@@ -57,10 +65,11 @@ func _process_shrink(delta):
 			result.collider.apply_impulse(Vector3.UP * collision_force, result.position)
 		size_key = clamp (size_key + shrink_rate * delta * 0.5, 0.0, 1.0)
 		growing = true
+		grow_shrink_instance.set_parameter_by_name_with_label("GrowShrink", "Growing", false)
 	else:
 		growing = false
 		return
-		
+	
 	size_factor = shrink_curve.sample(size_key)
 	$Collider.shape.height = collider_height * size_factor
 	$Collider.shape.radius = collider_radius * size_factor
@@ -69,6 +78,8 @@ func _process_shrink(delta):
 	$CameraPivot/Vacuum.set_size(size_factor)
 	$CameraPivot/Vacuum.position = vacuum_offset * size_factor
 	FMODStudioModule.get_studio_system().set_parameter_by_name("PlayerSize", size_key, false)
+	
+	
 
 
 func _process_movement(delta):
@@ -87,6 +98,17 @@ func _process_movement(delta):
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		target_velocity.y = jump_impulse * speed_size_curve.sample(size_key)
 		FMODRuntime.play_one_shot_path("event:/PlayerJump")
+		
+	if last_frame_size != size_key:
+		if can_play_size_change:
+			grow_shrink_instance.start()
+			can_play_size_change = false
+		last_frame_size = size_key
+	elif last_frame_size == size_key:
+		grow_shrink_instance.stop(FMODStudioModule.FMOD_STUDIO_STOP_ALLOWFADEOUT)
+		can_play_size_change = true
+	if !Input.is_action_pressed("shrink") and !Input.is_action_pressed("grow"):
+		grow_shrink_instance.stop(FMODStudioModule.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 	
 	if not is_on_floor():
 		target_velocity.y = target_velocity.y - (fall_acceleration * delta * speed_size_curve.sample(size_key))
@@ -121,7 +143,6 @@ func _input(event):
 		$CameraPivot.rotation.x = clamp($CameraPivot.rotation.x + y_change, 
 				-deg_to_rad(low_angle), 
 				deg_to_rad(high_angle))
-
 
 func _physics_process(delta):
 	_process_movement(delta)

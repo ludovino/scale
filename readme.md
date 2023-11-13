@@ -96,7 +96,11 @@ some items in the house are breakable, and breaking those items will deduct doll
         - ceramic plates and cups
         - paper
 
-
+## VFX
+### TODO
+- shrink / grow vfx
+- dirt particle effects
+- shader to indicate objects that are small enough to consume
 
 ## Level design
 ### Complete
@@ -107,3 +111,11 @@ some items in the house are breakable, and breaking those items will deduct doll
 - lay out tutorial
 - add 3d models to levels
 - more levels?
+
+## UI design
+### TODO
+- design main menu
+- design interface elements for:
+    - timer
+    - score
+    - task list

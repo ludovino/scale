@@ -5,7 +5,7 @@ class_name PropBody
 @export var min_force_size = 1.0
 @export var score = -10
 
-var score_bus = preload("res://score_bus.tres") as ScoreBus
+var score_bus = preload("res://Events/score_bus.tres") as ScoreBus
 var meshes = []
 var physics_objects = []
 signal sucked

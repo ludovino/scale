@@ -17,8 +17,8 @@ func _ready():
 	consume_radius = $ConsumeArea/ConsumeCollider.shape.radius
 	consume_offset = $ConsumeArea.position
 
-func set_size(size:float):
-	self.size = size
+func set_size(size_value:float):
+	size = size_value
 	$PullArea/PullCollider.shape.radius = pull_radius * size
 	$PullArea/PullCollider.shape.height = pull_height * size
 	$ConsumeArea/ConsumeCollider.shape.radius = consume_radius * size
@@ -28,7 +28,7 @@ func set_size(size:float):
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("suck"):
 		print("suck")
 		$PullArea/PullCollider.disabled = false;

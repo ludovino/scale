@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cp1x0wmna4wof"]
+[gd_scene load_steps=23 format=3 uid="uid://cp1x0wmna4wof"]
 
 [ext_resource type="PackedScene" uid="uid://d0b07iirhu0bn" path="res://PhysicsModels/cabinet_television_doors.tscn" id="1_0fwag"]
 [ext_resource type="PackedScene" uid="uid://00yvdipsto66" path="res://PlayerScenes/player.tscn" id="2_a513d"]
@@ -17,38 +17,21 @@
 [ext_resource type="PackedScene" uid="uid://c557tpwahvxvr" path="res://PhysicsModels/table_coffee_glass.tscn" id="15_867rm"]
 [ext_resource type="PackedScene" uid="uid://b1v7l7tmv7vc8" path="res://PhysicsModels/cup.tscn" id="16_f2pla"]
 [ext_resource type="PackedScene" uid="uid://bqjw3qni6xkxu" path="res://PhysicsModels/dvd.tscn" id="17_a2so6"]
-[ext_resource type="BankAsset" uid="uid://d33ws4htq15du" path="res://addons/FMOD/editor/resources/banks/{8556b406-a0d5-4596-b6ff-645698634984}.tres" id="18_b8xai"]
-[ext_resource type="PackedScene" uid="uid://d283krokj8b3w" path="res://level_controller.tscn" id="18_v30t6"]
-[ext_resource type="PackedScene" uid="uid://f8xot58dd2ew" path="res://ui.tscn" id="19_uqdn3"]
-[ext_resource type="BankAsset" uid="uid://46a4lthp3qkk" path="res://addons/FMOD/editor/resources/banks/{1d4b94d2-d1ae-09d4-30b6-eea869904f1c}.tres" id="19_vtso4"]
-
-[sub_resource type="GDScript" id="GDScript_0idnm"]
-script/source = "extends Node
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-"
+[ext_resource type="Script" path="res://Scripts/score_display.gd" id="18_cv8k5"]
+[ext_resource type="Script" path="res://Scripts/clock_display.gd" id="19_hkajl"]
+[ext_resource type="PackedScene" uid="uid://d283krokj8b3w" path="res://level_controller.tscn" id="19_onb8b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5b1c8"]
 size = Vector3(60, 1, 60)
 
+[sub_resource type="LabelSettings" id="LabelSettings_00e8h"]
+font_size = 48
+
 [node name="Test" type="Node"]
-script = SubResource("GDScript_0idnm")
 
 [node name="Player" parent="." instance=ExtResource("2_a513d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48283, 0.547825, 1.15042)
 x_sensitivity = 0.1
-y_invert = true
-
-[node name="StudioListener3D" type="StudioListener3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48283, -0.547825, -1.15042)
 
 [node name="SuckEffect" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23538, 0)
@@ -255,12 +238,72 @@ transform = Transform3D(0.320001, 0, -0.947417, 0, 1, 0, 0.947417, 0, 0.320001, 
 [node name="Dvd6" parent="PhysicsObjects" instance=ExtResource("17_a2so6")]
 transform = Transform3D(0.395946, 0, -0.918274, 0, 1, 0, 0.918274, 0, 0.395946, -0.0510578, 0.10357, -0.205305)
 
-[node name="LevelController" parent="." instance=ExtResource("18_v30t6")]
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="UI" parent="." instance=ExtResource("19_uqdn3")]
+[node name="Profit" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -170.0
+offset_top = 23.0
+offset_right = 130.0
+offset_bottom = 93.0
+grow_horizontal = 2
+pivot_offset = Vector2(150, 35)
+text = "$0"
+label_settings = SubResource("LabelSettings_00e8h")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("18_cv8k5")
 
-[node name="StudioBankLoader" type="StudioBankLoader" parent="."]
-load_on = 1
-num_banks = 2
-bank_0 = ExtResource("18_b8xai")
-bank_1 = ExtResource("19_vtso4")
+[node name="ReferenceRect" type="ReferenceRect" parent="UI"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 51.0
+offset_right = 342.0
+offset_bottom = 446.0
+
+[node name="TaskList" type="VBoxContainer" parent="UI/ReferenceRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/ReferenceRect/TaskList"]
+layout_mode = 2
+text = "Clean under the TV"
+
+[node name="Label2" type="Label" parent="UI/ReferenceRect/TaskList"]
+layout_mode = 2
+text = "Clear out the rotten food"
+
+[node name="Label3" type="Label" parent="UI/ReferenceRect/TaskList"]
+layout_mode = 2
+text = "Vacuum under the sofa"
+
+[node name="Label4" type="Label" parent="UI/ReferenceRect/TaskList"]
+layout_mode = 2
+text = "get rid of the mildew in the living room
+"
+autowrap_mode = 2
+
+[node name="Clock" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 998.0
+offset_top = 47.0
+offset_right = 1038.0
+offset_bottom = 73.0
+text = "180s"
+script = ExtResource("19_hkajl")
+
+[node name="LevelController" parent="." instance=ExtResource("19_onb8b")]
+tasks = Array[String](["clean under the TV", "clean around the coffee table", "vacuum under the sofa", "get rid of the stains on the wall"])

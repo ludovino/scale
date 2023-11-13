@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var score = 1
-var score_bus = preload("res://score_bus.tres") as ScoreBus
+var score_bus = preload("res://Events/score_bus.tres") as ScoreBus
 
 func _on_sucked():
 	var tween = create_tween()

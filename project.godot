@@ -21,6 +21,7 @@ FMODRuntime="*res://addons/FMOD/runtime/fmod_runtime_manager.gd"
 
 [debug]
 
+gdscript/warnings/integer_division=0
 shapes/collision/shape_color=Color(0, 0.6, 0.701961, 0.784314)
 
 [fmod]

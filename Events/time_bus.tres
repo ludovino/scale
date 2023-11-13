@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="TimeBus" load_steps=2 format=3 uid="uid://dn0b8uel80ucj"]
+
+[ext_resource type="Script" path="res://Scripts/time_bus.gd" id="1_vg64x"]
+
+[resource]
+script = ExtResource("1_vg64x")

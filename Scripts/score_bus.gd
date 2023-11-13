@@ -8,6 +8,6 @@ func add_to_score(change:int):
 	print("change score: ", change)
 	score_changed.emit(change)
 
-func update_score_total(total:int):
+func update_score_total(total:int, change:int):
 	print("total score: ", total)
-	score_total_updated.emit(total)
+	score_total_updated.emit(total, change)

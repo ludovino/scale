@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://d283krokj8b3w"]
 
-[ext_resource type="Script" path="res://level_controller.gd" id="1_6vaaw"]
+[ext_resource type="Script" path="res://Scripts/level_controller.gd" id="1_t36qr"]
 
 [node name="LevelController" type="Node"]
-script = ExtResource("1_6vaaw")
+script = ExtResource("1_t36qr")
 
 [node name="Timer" type="Timer" parent="."]

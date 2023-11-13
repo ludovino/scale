@@ -129,3 +129,9 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	_process_collisions()
+
+func _on_game_over():
+	# animate game over
+	set_physics_process(false)
+	set_process(false)
+	set_process_input(false)

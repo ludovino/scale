@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{e1f389c0-0c5f-481a-b351-e9271d4019f0}">
+		<property name="name">
+			<value>GrowShrink</value>
+		</property>
+		<relationship name="folder">
+			<destination>{ada8439e-a5f0-42d1-a818-fb59bd9aafd8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{9a360721-ba54-4be7-9a83-5dc2e21f7c56}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{9a360721-ba54-4be7-9a83-5dc2e21f7c56}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Growing</value>
+			<value>Shrinking</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
